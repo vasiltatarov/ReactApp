@@ -1,6 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
 
+async function getData() {
+  const response = await fetch('https://localhost:44318/WeatherForecast');
+  const data = await response.text();
+  console.log(data);
+}
+
+getData();
+
 function App() {
   return (
     <div className="App">
