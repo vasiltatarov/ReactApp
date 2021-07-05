@@ -30,7 +30,7 @@ function Navbar() {
                 <div className='navbar-container'>
                     <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
                         BookWorld&nbsp;
-                        <i class='fas fa-rocket' />
+                        <i className='fas fa-rocket' />
                     </Link>
                     <div className='menu-icon' onClick={handleClick}>
                         <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
@@ -49,7 +49,7 @@ function Navbar() {
                                 className='nav-links'
                                 onClick={closeMobileMenu}
                             >
-                                Services
+                                Books
                             </Link>
                         </li>
 

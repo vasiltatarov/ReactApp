@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import BookCard from './BookCard';
+import './Books.css';
 
 class Books extends Component {
     constructor(props) {
@@ -19,16 +20,20 @@ class Books extends Component {
 
     render() {
         return (
-            <div>
-                <h1>Books</h1>
-                <ul>
-                    {this.state.books.map(x =>
-                        <BookCard
-                            key={x.id}
-                            name={x.name}
-                            author={x.author}
-                        />)}
-                </ul>
+            <div className='cards'>
+                <h1>Check out these EPIC Destinations!</h1>
+                <div className='cards__container'>
+                    <div className='cards__wrapper'>
+                        <ul className='cards__items'>
+                            {this.state.books.map(x =>
+                                <BookCard
+                                    key={x.id}
+                                    name={x.name}
+                                    author={x.author}
+                                />)}
+                        </ul>
+                    </div>
+                </div>
             </div>
         );
     }
