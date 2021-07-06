@@ -46,15 +46,14 @@ class Books extends Component {
                 <Row md={4}>
                     {this.state.books.map(x =>
                         <Card key={x.id} style={{ width: '18rem', margin: '10px', padding: '10px' }}>
-                            <Card.Img variant="top"
+                            <Card.Img style={{ height: '350px' }} variant="top"
                                 src={x.imagePath == null
                                     ? 'https://img.jakpost.net/c/2019/03/02/2019_03_02_66706_1551461528._large.jpg'
                                     : x.imagePath} />
                             <Card.Body>
                                 <Card.Title>{x.name}</Card.Title>
                                 <Card.Text>
-                                    Some quick example text to build on the card title and make up the bulk of
-                                    the card's content.
+                                    Some quick example text to build on the card title and make up the
                                 </Card.Text>
                             </Card.Body>
                             <ListGroup className="list-group-flush">
@@ -63,8 +62,8 @@ class Books extends Component {
                                 <ListGroupItem>IMDB Rating: {x.imdb}</ListGroupItem>
                             </ListGroup>
                             <Card.Body>
-                                <Card.Link href="#">Card Link</Card.Link>
-                                <Card.Link href="#">Another Link</Card.Link>
+                                <Button variant='success'>Edit</Button>
+                                <Button style={{ float: 'right' }} variant='danger'>Delete</Button>
                             </Card.Body>
                         </Card>
                     )}
