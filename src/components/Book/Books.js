@@ -46,7 +46,10 @@ class Books extends Component {
                 <Row md={4}>
                     {this.state.books.map(x =>
                         <Card key={x.id} style={{ width: '18rem', margin: '10px', padding: '10px' }}>
-                            <Card.Img variant="top" src="https://img.jakpost.net/c/2019/03/02/2019_03_02_66706_1551461528._large.jpg" />
+                            <Card.Img variant="top"
+                                src={x.imagePath == null
+                                    ? 'https://img.jakpost.net/c/2019/03/02/2019_03_02_66706_1551461528._large.jpg'
+                                    : x.imagePath} />
                             <Card.Body>
                                 <Card.Title>{x.name}</Card.Title>
                                 <Card.Text>

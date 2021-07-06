@@ -18,6 +18,7 @@ export class AddBookModel extends Component {
             body: JSON.stringify({
                 name: ev.target.Name.value,
                 author: ev.target.Author.value,
+                imagePath: ev.target.ImagePath.value,
                 year: ev.target.Year.value,
                 imdb: ev.target.IMDB.value
             })
@@ -59,6 +60,11 @@ export class AddBookModel extends Component {
                                     <Form.Group controlId='Author'>
                                         <Form.Label>Author</Form.Label>
                                         <Form.Control type='text' name='Author' required placeholder='Book Author' />
+                                    </Form.Group>
+
+                                    <Form.Group controlId='ImagePath'>
+                                        <Form.Label>Image</Form.Label>
+                                        <Form.Control type='text' name='ImagePath' required placeholder='Image URL' />
                                     </Form.Group>
 
                                     <Form.Group controlId='Year'>
