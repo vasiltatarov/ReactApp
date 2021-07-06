@@ -7,6 +7,9 @@ import Row from 'react-bootstrap/Row';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 
+import { Button, ButtonToolbar } from 'react-bootstrap';
+import { AddBookModel } from './AddBookModel';
+
 import './Books.css';
 
 class Books extends Component {
@@ -14,7 +17,8 @@ class Books extends Component {
         super(props);
 
         this.state = {
-            books: []
+            books: [],
+            addModalShow: false
         };
     }
 
@@ -26,8 +30,19 @@ class Books extends Component {
     }
 
     render() {
+        let addModalClose = () => this.setState({ addModalShow: false });
         return (
-            <Container>
+            < Container>
+                <ButtonToolbar style={{ margin: '10px' }}>
+                    <Button variant='primary'
+                        onClick={() => this.setState({ addModalShow: true })}
+                    >
+                        Add Book
+                    </Button>
+
+                    <AddBookModel show={this.state.addModalShow} onHide={addModalClose}></AddBookModel>
+                </ButtonToolbar>
+
                 <Row md={4}>
                     {this.state.books.map(x =>
                         <Card key={x.id} style={{ width: '18rem', margin: '10px', padding: '10px' }}>
@@ -51,7 +66,7 @@ class Books extends Component {
                         </Card>
                     )}
                 </Row>
-            </Container>
+            </Container >
         );
     }
 }
