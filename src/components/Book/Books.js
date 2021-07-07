@@ -76,7 +76,7 @@ class Books extends Component {
                             <Card.Body>
                                 <Card.Title>{x.name}</Card.Title>
                                 <Card.Text>
-                                    Some quick example text to build on the card title and make up the
+                                    {x.id} Some quick example text to build on the card title and make up the
                                 </Card.Text>
                             </Card.Body>
                             <ListGroup className="list-group-flush">
