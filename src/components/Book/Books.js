@@ -9,6 +9,7 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem';
 
 import { Button, ButtonToolbar } from 'react-bootstrap';
 import { AddBookModel } from './AddBookModel';
+import { EditBookModel } from './EditBookModel';
 
 import './Books.css';
 
@@ -18,19 +19,41 @@ class Books extends Component {
 
         this.state = {
             books: [],
-            addModalShow: false
+            addModalShow: false,
+            editModalShow: false
         };
     }
 
-    componentDidMount() {
+    refreshList() {
         fetch('https://localhost:44318/Book')
             .then(res => res.json())
             .then(res => this.setState({ books: res }))
             .catch(error => console.log(error));
     }
 
+    componentDidMount() {
+        this.refreshList();
+    }
+
+    componentDidUpdate() {
+        this.refreshList();
+    }
+
+    deleteBook(id) {
+        if (window.confirm('Are you sure you want to delete this book?')) {
+            fetch('https://localhost:44318/Book/' + id, {
+                method: 'DELETE',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            });
+        }
+    }
+
     render() {
         let addModalClose = () => this.setState({ addModalShow: false });
+        let editModalClose = () => this.setState({ editModalShow: false });
         return (
             < Container>
                 <ButtonToolbar style={{ margin: '10px' }}>
@@ -61,10 +84,36 @@ class Books extends Component {
                                 <ListGroupItem>Year: {x.year}</ListGroupItem>
                                 <ListGroupItem>IMDB Rating: {x.imdb}</ListGroupItem>
                             </ListGroup>
-                            <Card.Body>
-                                <Button variant='success'>Edit</Button>
-                                <Button style={{ float: 'right' }} variant='danger'>Delete</Button>
-                            </Card.Body>
+
+                            <Button className='m-1' variant='primary'
+                                onClick={() => this.setState({
+                                    editModalShow: true,
+                                    id: x.id,
+                                    name: x.name,
+                                    author: x.author,
+                                    imagePath: x.imagePath,
+                                    year: x.year,
+                                    imdb: x.imdb
+                                })}
+                            >
+                                Edit</Button>
+
+                            <EditBookModel
+                                show={this.state.editModalShow}
+                                onHide={editModalClose}
+                                id={x.id}
+                                name={x.name}
+                                author={x.author}
+                                imagePath={x.imagePath}
+                                year={x.year}
+                                imdb={x.imdb}
+                            />
+
+                            <Button className='m-1' variant='danger'
+                                onClick={() => this.deleteBook(x.id)}
+                            >
+                                Delete</Button>
+
                         </Card>
                     )}
                 </Row>
